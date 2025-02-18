@@ -38,8 +38,17 @@ public class Program extends JFrame {
             }
         };
 
+       // JButton editorButton = new JButton("Open editor");
+       // editorButton.setPreferredSize(new Dimension(150, 50));
+       // editorButton.addActionListener(new AbstractAction() {
+       //     @Override
+       //     public void actionPerformed(ActionEvent e) {
+       //         new EditorFrame();
+       //     }
+       // });
+
         JButton fileButton = new JButton("Select file here");
-        fileButton.setPreferredSize(new Dimension(150, 50));
+        fileButton.setPreferredSize(new Dimension(200, 50));
         fileButton.addActionListener(new AbstractAction() {
 
             @Override
@@ -62,8 +71,14 @@ public class Program extends JFrame {
             }
         });
 
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        //buttonPanel.add(editorButton);
+        buttonPanel.add(Box.createRigidArea(new Dimension(150, 10)));
+        buttonPanel.add(fileButton);
+
         add(panel, BorderLayout.CENTER);
-        add(fileButton, BorderLayout.SOUTH);
+        add(buttonPanel, BorderLayout.SOUTH);
 
         setVisible(true);
     }

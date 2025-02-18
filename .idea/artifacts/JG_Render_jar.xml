@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="perspective-viewer.jar">
+  <artifact type="jar" name="JG-Render.jar">
     <output-path>$USER_HOME$/Downloads</output-path>
     <root id="archive" name="perspective-viewer.jar">
       <element id="module-output" name="perspective-viewer" />

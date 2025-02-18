@@ -1,29 +1,30 @@
-# Renderizador 3D para 2D
+# JG-Render
 
-Este projeto é um renderizador que converte objetos tridimensionais (3D) representados em arquivos `.json` para uma projeção bidimensional (2D). O renderizador utiliza Java e a biblioteca `javax.swing` para desenhar as arestas do objeto 3D em uma tela 2D.
+This project is a renderer that converts three-dimensional (3D) objects represented in .json files into a two-dimensional (2D) projection. The renderer uses Java and the javax.swing library to draw the edges of the 3D object on a 2D canvas. It also includes interactive features such as rotation, translation, and zooming.
 
-## Funcionalidades
+## Features
 
-- **Leitura de arquivos JSON**: O renderizador aceita arquivos `.json` que contêm a definição de vértices e arestas de um objeto 3D.
-- **Projeção 3D para 2D**: Utiliza uma projeção simples para converter coordenadas 3D em 2D.
-- **Renderização em tempo real**: Desenha as arestas do objeto 3D em uma janela gráfica.
+- **JSON File Parsing**: The renderer accepts `.json` files containing the definition of vertices and edges of a 3D object.
+- **3D to 2D Projection**: Uses a simple projection to convert 3D coordinates into 2D.
+- **Rotation and Movement**: The renderer allows you to rotate and move the object.
+- **Real-Time Rendering**: Draws the edges of the 3D object in a graphical window.
 
-## Estrutura do Projeto
+# Project Structure
 
-O projeto é composto por duas classes principais:
+This project consists of two main classes:
 
-1. **`RenderPanel`**: Responsável por renderizar o objeto 3D em uma tela 2D.
-    - **Método `project`**: Converte coordenadas 3D em 2D.
-    - **Método `paintComponent`**: Desenha as arestas do objeto na tela.
+1. **`RenderPanel`**: Responsible for rendering the 3D object onto a 2D screen.
+    - **Method `project`**: Converts 3D coordinates into 2D.
+    - **Method `paintComponent`**: Draws the edges of the object on the screen.
 
-2. **`Geometry`**: Representa a geometria do objeto 3D.
-    - **Atributos**:
-        - `vertex`: Uma matriz de vértices (coordenadas 3D).
-        - `edges`: Uma matriz de arestas (conexões entre vértices).
+2. **`Geometry`**: Represents the geometry of the 3D object.
+    - **Attributes**:
+        - `vertex`: A matrix of vertices (3D coordinates).
+        - `edges`: A matrix of edges (connections between vertices).
 
-## Exemplo de Arquivo JSON
+## Archive Example
 
-O arquivo `.json` deve seguir o seguinte formato:
+The `.json` archive example:
 
 ```json
 {
