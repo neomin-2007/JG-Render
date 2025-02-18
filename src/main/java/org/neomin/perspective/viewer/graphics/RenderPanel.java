@@ -39,11 +39,12 @@ public class RenderPanel extends JPanel implements KeyListener {
 
         double cosX = Math.cos(radX);
         double sinX = Math.sin(radX);
+
         double cosY = Math.cos(radY);
         double sinY = Math.sin(radY);
 
-        int xRotY = (int) (x * cosY + z * sinY);
-        int zRotY = (int) (-x * sinY + z * cosY);
+        int xRotY = (int) (x * cosY - z * sinY);
+        int zRotY = (int) (x * sinY + z * cosY);
 
         int yRotX = (int) (y * cosX - zRotY * sinX);
         int zRotX = (int) (y * sinX + zRotY * cosX);
@@ -84,14 +85,14 @@ public class RenderPanel extends JPanel implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_UP: y--;
-            case KeyEvent.VK_DOWN: y++;
-            case KeyEvent.VK_RIGHT: x++;
-            case KeyEvent.VK_LEFT: x--;
-            case KeyEvent.VK_O: rotX++;
-            case KeyEvent.VK_L: rotY++;
-            case KeyEvent.VK_U: dist++;
-            case KeyEvent.VK_H: dist--;
+            case KeyEvent.VK_UP: y--; break;
+            case KeyEvent.VK_DOWN: y++; break;
+            case KeyEvent.VK_RIGHT: x++; break;
+            case KeyEvent.VK_LEFT: x--; break;
+            case KeyEvent.VK_O: rotX++; break;
+            case KeyEvent.VK_L: rotY++; break;
+            case KeyEvent.VK_U: dist++; break;
+            case KeyEvent.VK_H: dist--; break;
         }
         repaint();
     }
