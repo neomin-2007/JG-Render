@@ -16,4 +16,9 @@ public class Geometry {
     @SerializedName("Edges")
     private int[][] edges;
 
+    @SerializedName("Faces")
+    private int[][] faces;
+
+    @SerializedName("Color")
+    private int[][] colors;
 }

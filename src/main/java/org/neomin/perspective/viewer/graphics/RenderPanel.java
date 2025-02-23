@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Arrays;
 
 @AllArgsConstructor
 public class RenderPanel extends JPanel implements KeyListener {
@@ -63,19 +64,58 @@ public class RenderPanel extends JPanel implements KeyListener {
         g2D.drawString("(↓) To Down", 675, 525);
         g2D.drawString("(→) To Right", 675, 550);
         g2D.drawString("(←) To Left", 675, 575);
+
         g2D.drawString("(O ↺) Rotate X", 520, 500);
         g2D.drawString("(L ↻) Rotate Y", 520, 525);
         g2D.drawString("(U ⨁) Zoom out", 520, 550);
         g2D.drawString("(H ⨂) Zoom in", 520, 575);
 
-        for (int[] edge : geometry.getEdges()) {
-            int[] rotated1 = rotate(geometry.getVertex()[edge[0]][0], geometry.getVertex()[edge[0]][1], geometry.getVertex()[edge[0]][2], rotX, rotY);
-            int[] rotated2 = rotate(geometry.getVertex()[edge[1]][0], geometry.getVertex()[edge[1]][1], geometry.getVertex()[edge[1]][2], rotX, rotY);
+        int loaded_face = 0;
 
-            int[] point1 = project(rotated1[0], rotated1[1], rotated1[2]);
-            int[] point2 = project(rotated2[0], rotated2[1], rotated2[2]);
 
-            g2D.drawLine(point1[0] + x, point1[1] + y, point2[0] + x, point2[1] + y);
+        if (geometry.getFaces() == null || Arrays.asList(geometry.getFaces()).isEmpty()) {
+            for (int[] edge : geometry.getEdges()) {
+                int[] rotated1 = rotate(geometry.getVertex()[edge[0]][0], geometry.getVertex()[edge[0]][1], geometry.getVertex()[edge[0]][2], rotX, rotY);
+                int[] rotated2 = rotate(geometry.getVertex()[edge[1]][0], geometry.getVertex()[edge[1]][1], geometry.getVertex()[edge[1]][2], rotX, rotY);
+
+                int[] point1 = project(rotated1[0], rotated1[1], rotated1[2]);
+                int[] point2 = project(rotated2[0], rotated2[1], rotated2[2]);
+
+                g2D.drawLine(point1[0] + x, point1[1] + y, point2[0] + x, point2[1] + y);
+            }
+        } else {
+            for (int[] face : geometry.getFaces()) {
+                int[] xPoints = new int[face.length];
+                int[] yPoints = new int[face.length];
+
+                for (int i = 0; i < face.length; i++) {
+                    int[] rotated = rotate(geometry.getVertex()[face[i]][0], geometry.getVertex()[face[i]][1], geometry.getVertex()[face[i]][2], rotX, rotY);
+                    int[] projected = project(rotated[0], rotated[1], rotated[2]);
+                    xPoints[i] = projected[0] + x;
+                    yPoints[i] = projected[1] + y;
+                }
+
+                if (geometry.getColors() != null || !Arrays.asList(geometry.getColors()).isEmpty()) {
+                    g2D.setColor(new Color(geometry.getColors()[loaded_face][0], geometry.getColors()[loaded_face][1], geometry.getColors()[loaded_face][2]));
+                }
+
+                g2D.fillPolygon(xPoints, yPoints, face.length);
+                g2D.setColor(Color.BLACK);
+                g2D.drawPolygon(xPoints, yPoints, face.length);
+
+                loaded_face++;
+            }
+
+            for (int[] edge : geometry.getEdges()) {
+                int[] rotated1 = rotate(geometry.getVertex()[edge[0]][0], geometry.getVertex()[edge[0]][1], geometry.getVertex()[edge[0]][2], rotX, rotY);
+                int[] rotated2 = rotate(geometry.getVertex()[edge[1]][0], geometry.getVertex()[edge[1]][1], geometry.getVertex()[edge[1]][2], rotX, rotY);
+
+                int[] point1 = project(rotated1[0], rotated1[1], rotated1[2]);
+                int[] point2 = project(rotated2[0], rotated2[1], rotated2[2]);
+
+                g2D.drawLine(point1[0] + x, point1[1] + y, point2[0] + x, point2[1] + y);
+            }
+
         }
     }
 
