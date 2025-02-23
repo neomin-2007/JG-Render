@@ -37,12 +37,12 @@ The `.json` archive example:
     [7, 6], [6, 5], [5, 4], [4, 7],
     [0, 4], [1, 5], [2, 6], [3, 7]
   ],
-  "Faces": [ -- Optional without color section.
+  "Faces": [ // -- Optional without color section.
     [0, 1, 2, 3], [4, 5, 6, 7],
     [0, 1, 5, 4], [3, 2, 6, 7],
     [1, 2, 6, 5], [0, 3, 7, 4]
   ],
-  "Color": [ -- Optional, but need Faces.
+  "Color": [ // -- Optional, but need Faces.
     [255, 80, 80], [255, 102, 102],
     [204, 0, 0], [255, 51, 0],
     [102, 0, 51], [153, 0, 0]
